@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'; 
 import SurveyForm from './components/SurveyForm';
 import SurveyResponses from './components/SurveyResponses';
 import { Navbar, Nav, Container } from 'react-bootstrap';
@@ -17,10 +17,10 @@ function App() {
         </Container>
       </Navbar>
       <Container className="mt-4">
-        <Switch>
-          <Route exact path="/" component={SurveyForm} />
-          <Route path="/responses" component={SurveyResponses} />
-        </Switch>
+        <Routes>
+          <Route exact path="/" element={<SurveyForm />} />
+          <Route path="/responses" element={<SurveyResponses />} />
+        </Routes>
       </Container>
     </Router>
   );
