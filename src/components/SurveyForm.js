@@ -8,24 +8,20 @@ function SurveyForm() {
   const [formData, setFormData] = useState({});
   const [files, setFiles] = useState([]);
 
-  // Fetch questions on load
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/questions/')
       .then(response => setQuestions(response.data))
       .catch(error => console.log(error));
   }, []);
 
-  // Handle input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle file upload
   const handleFileChange = (e) => {
     setFiles(e.target.files);
   };
 
-  // Next step
   const nextStep = () => {
     if (questions[step].required === 'yes' && !formData[questions[step].name]) {
       alert('This field is required!');
@@ -34,10 +30,8 @@ function SurveyForm() {
     setStep(step + 1);
   };
 
-  // Previous step
   const prevStep = () => setStep(step - 1);
 
-  // Submit form
   const submitForm = () => {
     const data = new FormData();
     for (let key in formData) {
@@ -46,14 +40,13 @@ function SurveyForm() {
     for (let file of files) {
       data.append('certificates', file);
     }
-    axios.put('http://127.0.0.1:8000/api/questions/responses/', data)
+    axios.put('http://127.0.0.1:8000/api/responses/create/', data)
       .then(() => alert('Submitted!'))
       .catch(error => console.log(error));
   };
 
   if (questions.length === 0) return <p>Loading...</p>;
 
-  // Preview step
   if (step === questions.length) {
     return (
       <Card>
