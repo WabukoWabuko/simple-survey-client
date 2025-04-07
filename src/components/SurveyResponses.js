@@ -24,7 +24,7 @@ function SurveyResponses() {
 
   const downloadCertificate = id => {
     axios
-      .get(`http://127.0.0.1:8000/api/responses/certificates/${id}/`, { responseType: 'blob' })
+      .get(`http://127.0.0.1:8000/api/certificates/${id}/`, { responseType: 'blob' })
       .then(response => {
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement('a');
