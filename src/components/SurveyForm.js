@@ -40,7 +40,7 @@ function SurveyForm() {
     for (let file of files) {
       data.append('certificates', file);
     }
-    axios.put('http://127.0.0.1:8000/api/responses/create/', data)
+    axios.put('http://127.0.0.1:8000/api/questions/responses/', data)
       .then(() => alert('Submitted!'))
       .catch(error => console.log(error));
   };

@@ -10,7 +10,7 @@ function SurveyResponses() {
 
   const fetchResponses = useCallback(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/responses/?page=${page}&email_address=${emailFilter}`)
+      .get(`http://127.0.0.1:8000/api/questions/responses/?page=${page}&email_address=${emailFilter}`)
       .then(response => {
         setResponses(response.data.question_responses);
         setTotalPages(response.data.last_page);
@@ -24,7 +24,7 @@ function SurveyResponses() {
 
   const downloadCertificate = id => {
     axios
-      .get(`http://127.0.0.1:8000/api/certificates/${id}/`, { responseType: 'blob' })
+      .get(`http://127.0.0.1:8000/api/questions/responses/certificates/${id}/`, { responseType: 'blob' })
       .then(response => {
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement('a');
